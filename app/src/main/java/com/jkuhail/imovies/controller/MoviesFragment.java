@@ -1,10 +1,10 @@
 package com.jkuhail.imovies.controller;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 
 public class MoviesFragment extends Fragment {
-    ArrayList<Item> data;
     MainAdapter mainAdapter;
     ListView mainListView;
     Operations operations = new Operations();
@@ -35,19 +34,13 @@ public class MoviesFragment extends Fragment {
 
         mainListView = root.findViewById(R.id.movies_list);
 
-        operations.fetch(MediaType.MOVIE, new Consumer<ArrayList<Item>>() {
+        operations.fetchTopRated(MediaType.MOVIE, new Consumer<ArrayList<Item>>() {
             @Override
             public void accept(ArrayList<Item> items) {
                 mainAdapter = new MainAdapter(getActivity(), items);
                 mainListView.setAdapter(mainAdapter);
             }
-        }, new Consumer<VolleyError>() {
-            @Override
-            public void accept(VolleyError volleyError) {
-                Toast.makeText(getContext() , volleyError.toString() , Toast.LENGTH_SHORT).show();
-            }
         });
-
 
         return root;
     }

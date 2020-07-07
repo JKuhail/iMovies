@@ -2,11 +2,12 @@ package com.jkuhail.imovies.model;
 
 public enum MediaType{
     MOVIE("movie"),
-    TV("tv");
+    TV("tv"),
+    ALL("all");
 
     String value;
 
-    MediaType(String value) {
+    MediaType(final String value) {
         this.value = value;
     }
 

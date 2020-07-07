@@ -8,13 +8,34 @@
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomBar" />
+        android:layout_above="@+id/bottom_bar" />
 
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottomBar"
+    <LinearLayout
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_tabs" />
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/top_movies"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Top Movies"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/top_tv_shows"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Top TV shows"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/trends"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Trends"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
 </RelativeLayout>

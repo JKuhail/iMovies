@@ -1,13 +1,23 @@
 package com.jkuhail.imovies.model;
 
 public class Item {
+    private int id;
     private String title, image , language, rate;
 
-    public Item(String title, String image, String language, String rate) {
+    public Item(int id, String title, String image, String language, String rate) {
+        this.id = id;
         this.title = title;
         this.image = image;
         this.language = language;
         this.rate = rate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

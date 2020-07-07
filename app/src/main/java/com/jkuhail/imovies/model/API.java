@@ -6,16 +6,16 @@ public enum API{
 
     String value;
 
-    API(String value) {
+    API(final String value) {
         this.value = value;
     }
 
     public String topRatedUrl(MediaType mediaType){
-        return Constants.API_URL.concat(Constants.API_KEY).concat(this.value.replace("{media_type}" , mediaType.getValue()));
+        return Constants.API_URL.concat(this.value.replace("{media_type}" , mediaType.getValue())).concat(Constants.API_KEY);
     }
     public String trendingUrl(MediaType mediaType, Time time){
-        return Constants.API_URL.concat(Constants.API_KEY).concat(this.value.replace("{media_type}" ,
-                mediaType.getValue()).replace("{time_window}", time.getValue()));
+        return Constants.API_URL.concat(this.value.replace("{media_type}" ,
+                mediaType.getValue()).replace("{time_window}", time.getValue())).concat(Constants.API_KEY);
     }
 }
 

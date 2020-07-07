@@ -6,7 +6,7 @@ public enum Time{
 
     String value;
 
-    Time(String value) {
+    Time(final String value) {
         this.value = value;
     }
 

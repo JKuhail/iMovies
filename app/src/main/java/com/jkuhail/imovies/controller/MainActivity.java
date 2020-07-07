@@ -1,39 +1,50 @@
 package com.jkuhail.imovies.controller;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 
 import com.jkuhail.imovies.R;
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
+
+
 
 public class MainActivity extends AppCompatActivity {
-    BottomBar bottomBar;
+    Button top_movies, top_tv_shows, trends;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer , new MoviesFragment()).commit();
+        top_movies = findViewById(R.id.top_movies);
+        top_tv_shows = findViewById(R.id.top_tv_shows);
+        trends = findViewById(R.id.trends);
 
-        bottomBar = findViewById(R.id.bottomBar);
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer , new ShowsFragment()).commit();
+
+        top_movies.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTabSelected(int tabId) {
-                switch (tabId){
-                    case R.id.tab_movies:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer , new MoviesFragment()).commit();
-                        break;
-                    case R.id.tab_tv_shows:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer , new ShowsFragment()).commit();
-                        break;
-                    case R.id.tab_trends:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer , new TrendsFragment()).commit();
-                        break;
-                }
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer , new MoviesFragment()).commit();
             }
         });
+        top_tv_shows.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer , new ShowsFragment()).commit();
+            }
+        });
+        trends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer , new TrendsFragment()).commit();
+            }
+        });
+
+
     }
 }
