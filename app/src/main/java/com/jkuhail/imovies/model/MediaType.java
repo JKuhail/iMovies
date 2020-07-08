@@ -1,6 +1,7 @@
 package com.jkuhail.imovies.model;
 
-public enum MediaType{
+
+public enum MediaType {
     MOVIE("movie"),
     TV("tv"),
     ALL("all");

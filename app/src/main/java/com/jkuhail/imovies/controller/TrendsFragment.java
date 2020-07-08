@@ -1,19 +1,21 @@
 package com.jkuhail.imovies.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.core.util.Consumer;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.android.volley.VolleyError;
 import com.jkuhail.imovies.R;
 import com.jkuhail.imovies.controller.adapter.MainAdapter;
+import com.jkuhail.imovies.model.Constants;
 import com.jkuhail.imovies.model.Item;
 import com.jkuhail.imovies.model.MediaType;
 import com.jkuhail.imovies.model.Time;
@@ -35,7 +37,7 @@ public class TrendsFragment extends Fragment {
         final View root =  inflater.inflate(R.layout.fragment_trends, container, false);
         mainListView = root.findViewById(R.id.trends_list);
 
-        operations.fetchTrending(MediaType.MOVIE, Time.DAY,
+        operations.fetchTrending(MediaType.ALL.getValue(), Time.DAY,
                 new Consumer<ArrayList<Item>>() {
                     @Override
                     public void accept(ArrayList<Item> items) {
@@ -43,6 +45,18 @@ public class TrendsFragment extends Fragment {
                         mainListView.setAdapter(mainAdapter);
                     }
                 });
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int element_id = MainAdapter.data.get(position).getId();
+                String mediaType = MainAdapter.data.get(position).getMediaType();
+
+                Intent intent = new Intent(root.getContext(), DetailsActivity.class);
+                intent.putExtra(Constants.ELEMENT_ID, element_id);
+                intent.putExtra(Constants.ELEMENT_TYPE, mediaType);
+                startActivity(intent);
+            }
+        });
 
         return root;
     }

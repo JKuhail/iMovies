@@ -2,10 +2,11 @@ package com.jkuhail.imovies.model;
 
 public class Item {
     private int id;
-    private String title, image , language, rate;
+    private String mediaType, title, image , language, rate;
 
-    public Item(int id, String title, String image, String language, String rate) {
+    public Item( int id, String mediaType, String title, String image, String language, String rate) {
         this.id = id;
+        this.mediaType = mediaType;
         this.title = title;
         this.image = image;
         this.language = language;
@@ -18,6 +19,14 @@ public class Item {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 
     public String getTitle() {
